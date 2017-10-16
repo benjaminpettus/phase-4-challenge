@@ -10,15 +10,18 @@
     "dev": "nodemon src/server.js",
     "db:create": "createdb vinyl",
     "db:drop": "dropdb vinyl",
-    "db:schema": "psql -d vinyl < src/db/schema.sql",
-    "db:seed": "psql -d vinyl < src/db/albums.sql",
+    "db:rollback": "knex migrate:rollback",
+    "db:schema": "knex migrate:latest",
+    "db:seed": "knex seed:run",
     "test": "./node_modules/.bin/eslint src"
   },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
+    "knex": "^0.13.0",
     "pg": "^6.2.4"
   },
   "devDependencies": {
