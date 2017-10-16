@@ -1,12 +1,12 @@
 // Update with your config settings.
-require('dotenv').config({path: '../../.env'})
+require('dotenv').config({ path: '../../.env' })
 module.exports = {
-    client: 'postgresql',
+    client: 'pg',
     connection: process.env.DB_HOST,
     migrations: {
-      tableName: 'migrations'
+      directory: 'migrations'
     },
     seeds: {
-      tableName: 'seeds'
+      directory: 'seeds'
     }
-};
+}

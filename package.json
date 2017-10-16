@@ -10,10 +10,10 @@
     "dev": "nodemon src/server.js",
     "db:create": "createdb vinyl",
     "db:drop": "dropdb vinyl",
-    "db:rollback": "knex migrate:rollback",
-    "db:schema": "knex migrate:latest",
-    "db:seed": "knex seed:run",
-    "test": "./node_modules/.bin/eslint src"
+    "db:rollback": "knex --knexfile '/src/db/knex.js' migrate:rollback",
+    "db:schema": "knex --knexfile './src/db/knex.js' migrate:latest",
+    "db:seed": "--knexfile ../src/db/knex.js knex seed:run",
+    "test": "mocha ./src/test/*-test.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -25,9 +25,11 @@
     "pg": "^6.2.4"
   },
   "devDependencies": {
+    "chai": "*",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
+    "mocha": "*",
     "nodemon": "^1.11.0"
   }
 }
