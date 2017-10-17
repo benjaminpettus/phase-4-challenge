@@ -13,6 +13,10 @@ preAuth.get('/', (request, response) => {
   })
 })
 
+preAuth.get('/signup', (request, response) => {
+  response.render('sign-up')
+})
+
 
 
 
