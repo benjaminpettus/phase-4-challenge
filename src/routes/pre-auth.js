@@ -1,12 +1,15 @@
 const preAuth = require('express').Router()
 const Albums = require('../db/albums')
+const Reviews = require('../db/reviews')
 
 
 preAuth.get('/', (request, response) => {
   Albums.getAll()
   .then( albums => {
-    console.log('in route _+_+',albums)
-    response.render('index', {albums: albums})
+  Reviews.lastThree()
+  .then( reviews => {
+    response.render('index', {albums: albums, reviews: reviews})
+    })
   })
 })
 

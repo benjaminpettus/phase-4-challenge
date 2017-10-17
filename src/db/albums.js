@@ -8,6 +8,16 @@ const getAll = () => {
     .catch(error => error )
 }
 
+const getOne = (id) => {
+  return knex.select()
+    .from('albums')
+    .where('id', id)
+    .then(album => album[0])
+    .catch(error => error)
+
+}
+
+
 
 
 
@@ -17,6 +27,6 @@ const getAll = () => {
 
 
 module.exports = {
-
-  getAll
+  getAll,
+  getOne
 }
