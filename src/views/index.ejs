@@ -20,5 +20,16 @@
     <% }) %>
   </div>
 
+  <div class="review-list">
+
+    <% reviews.forEach(function(review) { %>
+    <% console.log('in view _+_+_+_+', review)%>
+      <h5><%= review.title %></h5>
+      <p><%= review.created_on %></p>
+      <p><%= review.content %></p>
+      <p>by: <%= review.username %> </p>
+    <% }) %>
+  </div>
+
 </body>
 </html>
