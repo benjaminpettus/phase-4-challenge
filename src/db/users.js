@@ -8,15 +8,14 @@ const byId = (id) => {
     .catch(error => console.error)
 }
 
-const byName = (name) => {
+const byEmail = (email) => {
   return knex.select()
     .from('users')
-    .where('name', name)
-    .then(user => user)
+    .where('name', email)
     .catch(error => console.error);
 }
 
 module.exports = {
   byId,
-  nyName
+  byEmail
 }

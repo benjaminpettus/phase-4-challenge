@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 const Albums = require('./db/albums')
+const passport = require('./auth/passport')
 
 const port = process.env.PORT || 3000
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 //     }
 //   })
 // })
+app.use(passport.initialize())
 app.use(routes)
 
 app.use((req, res) => {
