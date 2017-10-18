@@ -1,5 +1,6 @@
 const preAuth = require('express').Router()
 const Albums = require('../db/albums')
+const Users = require('../db/users')
 const Reviews = require('../db/reviews')
 const passport = require('../auth/passport')
 const bcrypt = require('bcrypt')
@@ -18,17 +19,36 @@ preAuth.get('/', (request, response) => {
 preAuth.get('/signup', (request, response) => {
   response.render('sign-up')
 })
-
-preAuth.post('/signup', (request, response) => {
-  console.log('from route', request.body)
+//
+// preAuth.post( '/signup', ( request, response ) => {
+//   const { email, username, password } = request.body
+//   console.log('from route',email)
+//   bcrypt.hash( password, 10, ( error, hash ) => {
+//     Users.create(email, username, hash)
+//     .then( user => {
+//       response.redirect('signin')
+//     })
+//  })
+// })
+// preAuth.post( '/signup', ( request, response ) => {
+//   const { email, username, password } = request.body
+//   Users.create(  username, email, password)
+//     .then( () => {
+//       response.redirect( '/signin' )
+//     })
+// })
+preAuth.post('/signup', (request, response, next) => {
   const { username, email, password } = request.body
   bcrypt.hash(password, 10, (error, hash) => {
-    User.create(email, username, hash).
-    then( user => {
-
+    Users.create(email, username, hash)
+    .then( user => {
+      request.login(user, function(error) {
+        console.log('the user from auto login::: ', user[0].id)
+        if (error) { return next(error); }
+          response.redirect('/users/' + user[0].id);
+        });
     })
   });
-
 })
 
 preAuth.get('/signin', (request, response) => {
