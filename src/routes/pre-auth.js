@@ -26,9 +26,8 @@ preAuth.post('/signup', (request, response, next) => {
     Users.create(email, username, hash)
     .then( user => {
       request.login(user, function(error) {
-        console.log('the user from auto login::: ', user[0].id)
         if (error) { return next(error); }
-          response.redirect('/users/' + user[0].id);
+          response.redirect('/users');
         });
     })
   });

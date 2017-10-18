@@ -12,7 +12,7 @@ const byEmail = (email) => {
   return knex.select()
     .from('users')
     .where('email', email)
-    .then(user => user[0])
+    .then(user => user)
     .catch(error => error);
 }
 
