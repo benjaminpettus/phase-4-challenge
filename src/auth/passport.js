@@ -18,6 +18,7 @@ passport.use( new LocalStrategy ({
           console.log('3')
           if (false) { return done(null, false)}
           console.log('4')
+          console.log(user)
           return done( null, user )
         })
       })
@@ -30,7 +31,7 @@ passport.use( new LocalStrategy ({
 
 passport.serializeUser(( user, done ) => {
   console.log('user from serialize ::::',user)
-  done( null, user[0].id )
+  done( null, user.id )
 })
 
 passport.deserializeUser(( id, done ) => {

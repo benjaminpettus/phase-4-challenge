@@ -19,24 +19,7 @@ preAuth.get('/', (request, response) => {
 preAuth.get('/signup', (request, response) => {
   response.render('sign-up')
 })
-//
-// preAuth.post( '/signup', ( request, response ) => {
-//   const { email, username, password } = request.body
-//   console.log('from route',email)
-//   bcrypt.hash( password, 10, ( error, hash ) => {
-//     Users.create(email, username, hash)
-//     .then( user => {
-//       response.redirect('signin')
-//     })
-//  })
-// })
-// preAuth.post( '/signup', ( request, response ) => {
-//   const { email, username, password } = request.body
-//   Users.create(  username, email, password)
-//     .then( () => {
-//       response.redirect( '/signin' )
-//     })
-// })
+
 preAuth.post('/signup', (request, response, next) => {
   const { username, email, password } = request.body
   bcrypt.hash(password, 10, (error, hash) => {
@@ -55,11 +38,17 @@ preAuth.get('/signin', (request, response) => {
   response.render('sign-in')
 })
 
-preAuth.post('/signin', passport.authenticate('local', { successRedirect: '/users',
-                          failureRedirect: '/signin',
-                          failureFlash: 'Invalid Username or Password'
+preAuth.post('/signin', passport.authenticate('local', {
+                          successRedirect: '/users',
+                          failureRedirect: '/signin'
+
                         })
 )
+
+preAuth.get('/logout', (request, response) => {
+  request.logout()
+  response.redirect('signin')
+})
 
 
 

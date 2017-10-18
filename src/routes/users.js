@@ -3,9 +3,8 @@ const User = require('../db/users')
 
 
 users.get('/', (request, response) => {
-  console.log(response.body)
-  console.log(request.params)
-  response.redirect(`/users/${id}`)
+  const { user } = request.session.passport
+  response.redirect(`/users/${user}`)
 })
 
 users.get('/:id', (request, response) => {
