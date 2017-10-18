@@ -7,8 +7,9 @@ albums.get( '/:id', ( request, response ) => {
   const { id } = request.params
     Album.getById(id)
     .then( album => {
-    Reviews.lastThree()
+    Reviews.byAlbum(id)
     .then( reviews => {
+      // console.log('from route_+___+_+++', reviews)
       if(request.session.passport){
         response.render('album', {album: album, reviews: reviews, session: request.session})
       } else {

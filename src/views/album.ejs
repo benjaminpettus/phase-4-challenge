@@ -14,6 +14,7 @@
       <p><%= review.created_on %></p>
       <p><%= review.content %></p>
       <p>by: <%= review.username %> </p>
+      <a href="#" class="delete" data-id="<% review.id %>"><i class="material-icons" >delete_forever</i></a>
     <% }) %>
   </div>
 
