@@ -1,29 +1,42 @@
 const albums = require('express').Router()
 const Album = require('../db/albums')
+const passport = require('../auth/passport')
 
 albums.get( '/:id', ( request, response ) => {
   const { id } = request.params
    Album.getById(id)
     .then( album => {
-      response.render('album', {album: album, session: request.session})
+      if(request.session.passport){
+        response.render('album', {album: album, session: request.session})
+      } else {
+        response.render('album', {album: album})
+      }
     })
 })
 
 albums.get( '/:id/new-review', ( request, response ) => {
   const { id } = request.params
-  response.render('new-review', { id: id, session: request.session })
+  return Album.getById(id)
+   .then( album => {
+     if(request.session.passport){
+       response.render('new-review', { id: id, album: album, session: request.session })
+     } else {
+       response.render('new-review', { id: id, album: album })
+     }
+  })
 })
 
 
-// albums.post( '/:id/new-review', ( request, response ) => {
-//   const { id } = request.params
-//   const { user } = request.session.passport
-//   const { userId, content } = request.body
-//   Albums.addReview( user, id, content )
-//     .then( review => {
-//       response.redirect(`/album/${id}`)
-//     })
-// })
+albums.post( '/:id/new-review', ( request, response ) => {
+  const { id } = request.params
+  // const { user } = request.session.passport
+  console.log( request.body)
+  console.log( request.session)
+  // Albums.addReview( user, id, content )
+  //   .then( review => {
+      return response.redirect(`/albums/${id}`)
+  //   })
+})
 
 
 
