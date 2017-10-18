@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Vinyl</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
-</head>
-<body>
+<% include partials/header %>
 
   <h1>Vinyl</h1>
-
   <h2>Records</h2>
 
   <div class="album-list">
@@ -21,9 +13,8 @@
   </div>
 
   <div class="review-list">
-
+    <h2> Recent Reviews</h2>
     <% reviews.forEach(function(review) { %>
-    <% console.log('in view _+_+_+_+', review)%>
       <h5><%= review.title %></h5>
       <p><%= review.created_on %></p>
       <p><%= review.content %></p>
@@ -31,5 +22,4 @@
     <% }) %>
   </div>
 
-</body>
-</html>
+<% include partials/footer %>
