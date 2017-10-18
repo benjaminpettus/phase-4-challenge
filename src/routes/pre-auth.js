@@ -11,8 +11,13 @@ preAuth.get('/', (request, response) => {
   .then( albums => {
   Reviews.lastThree()
   .then( reviews => {
-    response.render('index', {albums: albums, reviews: reviews})
-    })
+    if(request.session.passport) {
+
+      response.render('index', {albums: albums, reviews: reviews, session: request.session})
+    } else {
+      response.render('index', {albums: albums, reviews: reviews})
+    }
+  })
   })
 })
 

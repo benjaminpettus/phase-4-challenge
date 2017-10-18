@@ -8,13 +8,12 @@ const getAll = () => {
     .catch(error => error )
 }
 
-const getOne = (id) => {
+const getById = (id) => {
   return knex.select()
     .from('albums')
     .where('id', id)
     .then(album => album[0])
     .catch(error => error)
-
 }
 
 
@@ -28,5 +27,5 @@ const getOne = (id) => {
 
 module.exports = {
   getAll,
-  getOne
+  getById
 }

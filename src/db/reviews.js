@@ -10,6 +10,15 @@ const lastThree = () => {
     .catch(error => error)
 }
 
+const byAlbum = (id) => {
+  return knex.select()
+    .from('reviews')
+    .where('album_id', id)
+    .join('albums', 'reviews.album_id', '=', 'albums.id')
+    .join('users', 'reviews.user_id', '=', 'users.id')
+    .then(reviews => reviews)
+    .catch(error => error)
+}
 
 
 
@@ -17,5 +26,6 @@ const lastThree = () => {
 
 
 module.exports = {
-  lastThree
+  lastThree,
+  byAlbum
 }

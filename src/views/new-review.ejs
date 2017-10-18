@@ -1,0 +1,20 @@
+<% include partials/header %>
+<div class="row">
+     <div class="col s12 m6">
+       <div class="card blue-grey darken-1">
+         <div class="card-content white-text">
+           <span class="card-title">New Review for <%= album.title %></span>
+           <form class="signup" action="/albums/<%= id %>/new-review" method="POST">
+             <div class="row">
+               <div class="input-field col s12">
+                 <textarea id="new-review" class="materialize-textarea" name="content"></textarea>
+                 <label for="textarea1">Add Review Here</label>
+               </div>
+             </div>
+              <input type="submit" class="waves-effect waves-light btn" value="Submit">
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+<% include partials/footer %>

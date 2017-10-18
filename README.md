@@ -90,9 +90,9 @@ Users can:
 
 Users CANNOT:
 
-- [ ] __30:__ Sign up without a name value.
-- [ ] __30:__ Sign up without an email address value.
-- [ ] __30:__ Sign up with an email that is already in use.
+- [x] __30:__ Sign up without a name value.
+- [x] __30:__ Sign up without an email address value.
+- [x] __30:__ Sign up with an email that is already in use.
 
 Layout:
 
@@ -131,7 +131,7 @@ Users are able to sign out.
 
 Users can:
 
-- [ ] __20:__ Be redirected to the home page (e.g. `/`) after signing out by clicking the Sign Out button.
+- [x] __20:__ Be redirected to the home page (e.g. `/`) after signing out by clicking the Sign Out button.
 
 Users CANNOT:
 
@@ -149,7 +149,7 @@ Routing:
 
 Users can:
 
-- [ ] __20:__ View their name, email, and join date.
+- [x] __20:__ View their name, email, and join date.
 - [ ] __20:__ View only their submitted reviews sorted by newest first.
 - [ ] __20:__ View "trash can" delete icons only next to reviews submitted by users.
 - [ ] __20:__ View a pop-up with a Cancel button, a Confirm button, and a message that reads, "Are you sure you want to delete this review?" after clicking the delete icon next to a review.
@@ -173,14 +173,14 @@ Routing:
 
 Users can:
 
-- [ ] __20:__ View the name of the album on the album page.
+- [x] __20:__ View the name of the album on the album page.
 - [ ] __20:__ View all reviews for the album on album page sorted by newest first.
 - [ ] __20:__ View "trash can" delete icons next to reviews the user can delete.
 - [ ] __20:__ View a pop-up with a Cancel button, a Confirm button, and a message that reads, "Are you sure you want to delete this review?" after clicking the trash can icon next to a review.
 - [ ] __20:__ Have the pop-up dismissed after clicking Cancel.
 - [ ] __20:__ Have the review deleted from the database and removed from the album page after clicking Confirm.
-- [ ] __20:__ View a button with the label "Add Review".
-- [ ] __20:__ Be redirected to the new review page (e.g. `/albums/<ALBUM ID>/reviews/new`) the after clicking the "Add Review" button.
+- [x] __20:__ View a button with the label "Add Review".
+- [x] __20:__ Be redirected to the new review page (e.g. `/albums/<ALBUM ID>/reviews/new`) the after clicking the "Add Review" button.
 
 Users CANNOT:
 
@@ -200,13 +200,13 @@ Displays a form that allows users to submit album reviews.
 
 Routing:
 
-- [ ] __20:__ Navigating to `/albums/<ALBUM ID>/reviews/new` loads the new review page.
+- [x] __20:__ Navigating to `/albums/<ALBUM ID>/reviews/new` loads the new review page.
 
 Users can:
 
-- [ ] __20:__ Enter multi-line text in the text field.
-- [ ] __20:__ Click the Submit button to submit the review.
-- [ ] __20:__ Be redirected to the album page (e.g. `/albums/<ALBUM ID>`) after submitting the review.
+- [x] __20:__ Enter multi-line text in the text field.
+- [x] __20:__ Click the Submit button to submit the review.
+- [x] __20:__ Be redirected to the album page (e.g. `/albums/<ALBUM ID>`) after submitting the review.
 
 Users CANNOT:
 
@@ -215,5 +215,5 @@ Users CANNOT:
 
 Layout:
 
-- [ ] __10:__ The site-wide header is visible on the new review page.
-- [ ] __20:__ The layout of the new review page matches the wireframes.
+- [x] __10:__ The site-wide header is visible on the new review page.
+- [x] __20:__ The layout of the new review page matches the wireframes.
