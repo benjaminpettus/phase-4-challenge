@@ -46,6 +46,12 @@ albums.post( '/:id/new-review', ( request, response ) => {
   //   })
 })
 
+albums.delete('/:id/review', (request, response ) => {
+  const { id }  = request.params
+  Reviews.delete( id )
+    .then( review => review)
+    .catch( error => console.error )
+})
 
 
 
