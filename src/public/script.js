@@ -5,35 +5,12 @@ const ELEMENTS = {
  signupUsername: () => document.getElementById('signup-username'),
  signupPwd: () => document.getElementById('signup-password'),
  signupBtn: () => document.getElementById('signupBtn'),
- deleteBtn: () => document.querySelectorAll('.delete')
+ deleteBtn: () => document.querySelectorAll('.delete'),
+ newReviewContent: () => document.getElementById('new-review'),
+ addReviewBtn: () => document.querySelector('.newnew')
+
 }
 
-// CONTROLLER = {
-//   removeReview: (event) => {
-//     const id = event.target.dataset.id
-//     const target = event.target
-//     DATA.removeReview(id)
-//     .then(review => {
-//         const card = target.parentNode.parentNode.parentNode.parentNode.parentNode
-//         card.parentNode.removeChild(card)
-//     })
-//     .catch(error = console.error)
-//   }
-//
-// }
-///
-// const deleteReview = ( reviewId, target ) => {
-//  fetch(`http://localhost:3000/reviews/${reviewId}` , { method:"DELETE" })
-//  .then(response => {
-//    return response.text()
-//  })
-//  .then(() => {
-//    const card = target.parentNode.parentNode
-//    card.parentNode.removeChild(card)
-//  })
-//  .catch( error => console.error )
-//  }
-///
 DATA = {
   removeReview: ( reviewId, target ) => {
    return fetch(`http://localhost:3000/albums/${reviewId}` , { method:"DELETE" })
@@ -52,6 +29,18 @@ DATA = {
 UI = {
 
   addAllEventListeners: () => {
+
+    if(ELEMENTS.newReviewBtn()){
+      ELEMENTS.newReviewBtn().addEventListener('click', (event) => {
+        console.log('click')
+      if( ELEMENTS.newReviewContent().value == ''){
+        alert('You must enter a review!!')
+        event.preventDefault()
+      }
+      }
+    })
+
+    }
 
     if (ELEMENTS.signupBtn()){
       ELEMENTS.signupBtn().addEventListener('click', (event) => {
