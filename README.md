@@ -65,8 +65,8 @@ Routing:
 Users can:
 
 - [x] __20:__ View all albums on the home page (under the "Records" heading).
-- [ ] __20:__ View only the _**3 most recent**_ reviews on the home page sorted by newest first.
-- [ ] __20:__ Click on an album title to go to the album page (e.g. `/albums/<ALBUM ID>`).
+- [x] __20:__ View only the _**3 most recent**_ reviews on the home page sorted by newest first.
+- [x] __20:__ Click on an album title to go to the album page (e.g. `/albums/<ALBUM ID>`).
 
 Layout:
 
@@ -150,7 +150,7 @@ Routing:
 Users can:
 
 - [x] __20:__ View their name, email, and join date.
-- [ ] __20:__ View only their submitted reviews sorted by newest first.
+- [x] __20:__ View only their submitted reviews sorted by newest first.
 - [x] __20:__ View "trash can" delete icons only next to reviews submitted by users.
 - [x] __20:__ View a pop-up with a Cancel button, a Confirm button, and a message that reads, "Are you sure you want to delete this review?" after clicking the delete icon next to a review.
 - [x] __20:__ Have the pop-up dismissed after clicking Cancel.
@@ -174,7 +174,7 @@ Routing:
 Users can:
 
 - [x] __20:__ View the name of the album on the album page.
-- [ ] __20:__ View all reviews for the album on album page sorted by newest first.
+- [x] __20:__ View all reviews for the album on album page sorted by newest first.
 - [x] __20:__ View "trash can" delete icons next to reviews the user can delete.
 - [x] __20:__ View a pop-up with a Cancel button, a Confirm button, and a message that reads, "Are you sure you want to delete this review?" after clicking the trash can icon next to a review.
 - [x] __20:__ Have the pop-up dismissed after clicking Cancel.

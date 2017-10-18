@@ -15,10 +15,8 @@ users.get('/:username', ( request, response ) => {
   const {username} = request.params
   User.byUsername(username)
   .then( user => {
-    console.log('user in route<<<<<<',user)
   Reviews.byUserId(user.id)
   .then( reviews => {
-    console.log('in route ><<><><><><>',reviews)
     if (request.session.passport) {
       response.render( 'profile', { user: user, reviews: reviews, session: request.session })
     } else {

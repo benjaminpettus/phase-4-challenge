@@ -9,7 +9,6 @@ albums.get( '/:id', ( request, response ) => {
     .then( album => {
     Reviews.byAlbum(id)
     .then( reviews => {
-      // console.log('from route_+___+_+++', reviews)
       if(request.session.passport){
         response.render('album', {album: album, reviews: reviews, session: request.session})
       } else {
@@ -44,9 +43,11 @@ albums.post( '/:id/new-review', ( request, response ) => {
   }
 })
 
-albums.delete('/:id/review', (request, response ) => {
-  const { id }  = request.params
-  Reviews.delete( id )
+albums.delete('/:reviewId', (request, response ) => {
+  console.log('that route tho')
+  const { reviewId }  = request.params
+  console.log('enroute::::::', reviewId)
+  Reviews.deleteReview( reviewId )
     .then( review => review)
     .catch( error => console.error )
 })

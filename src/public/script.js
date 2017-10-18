@@ -8,32 +8,48 @@ const ELEMENTS = {
  deleteBtn: () => document.querySelectorAll('.delete')
 }
 
-console.log(ELEMENTS.deleteBtn())
-
-CONTROLLER = {
-  deleteTodo: (event) => {
-    const id = event.target.dataset.id
-    const target = event.target
-    DATA.deleteTodo(id)
-    .then(response => {
-      UI.deleteTodo(target)
-    })
-    .catch(error = console.error)
-  }
-
-}
-
+// CONTROLLER = {
+//   removeReview: (event) => {
+//     const id = event.target.dataset.id
+//     const target = event.target
+//     DATA.removeReview(id)
+//     .then(review => {
+//         const card = target.parentNode.parentNode.parentNode.parentNode.parentNode
+//         card.parentNode.removeChild(card)
+//     })
+//     .catch(error = console.error)
+//   }
+//
+// }
+///
+// const deleteReview = ( reviewId, target ) => {
+//  fetch(`http://localhost:3000/reviews/${reviewId}` , { method:"DELETE" })
+//  .then(response => {
+//    return response.text()
+//  })
+//  .then(() => {
+//    const card = target.parentNode.parentNode
+//    card.parentNode.removeChild(card)
+//  })
+//  .catch( error => console.error )
+//  }
+///
 DATA = {
   removeReview: ( reviewId, target ) => {
    return fetch(`http://localhost:3000/albums/${reviewId}` , { method:"DELETE" })
    .then(response => {
      return response.text()
    })
+   .then(() => {
+     const card = target.parentNode.parentNode.parentNode.parentNode
+     console.log(card)
+     card.parentNode.removeChild(card)
+   })
   }
 
 }
 
-const UI = {
+UI = {
 
   addAllEventListeners: () => {
 
@@ -50,20 +66,17 @@ const UI = {
 
     ELEMENTS.deleteBtn().forEach(tile => {
       tile.addEventListener('click', (event) => {
-        console.log('clickies')
       confirm("Are you sure you want to delete this review?")
-      //  ? CONTROLLER.removeReview(event)
-      //  : event.preventDefault()
+       ? DATA.removeReview(parseInt(event.target.dataset.id), event.target)
+       : event.preventDefault()
       })
     })
 
-  },
-  deleteTodo: (element) => {
-      const card = element.parentNode.parentNode
-      card.parentNode.removeChild(card)
-    }
-  
+  }
+
+
 
 }
+
 
 UI.addAllEventListeners()

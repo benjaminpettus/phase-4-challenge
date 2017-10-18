@@ -4,6 +4,7 @@ const knex = require('./knex')
 const lastThree = () => {
   return knex.select()
     .from('reviews').limit(3)
+    .orderBy('reviews.id', 'desc')
     .join('albums', 'reviews.album_id', '=', 'albums.id')
     .join('users', 'reviews.user_id', '=', 'users.id')
     .then(reviews => reviews)
@@ -11,21 +12,23 @@ const lastThree = () => {
 }
 
 const byAlbum = (id) => {
-  return knex.select()
-    .from('reviews')
+  return knex('reviews')
     .where('album_id', id)
-    .join('albums', 'reviews.album_id', '=', 'albums.id')
-    .join('users', 'reviews.user_id', '=', 'users.id')
+    .orderBy('reviews.id', 'desc')
+    .leftJoin('albums', 'reviews.album_id', '=', 'albums.id')
+    .leftJoin('users', 'reviews.user_id', '=', 'users.id')
+    .select('reviews.id AS id', 'album_id', 'user_id', 'content', 'reviews.created_on AS created_on', 'albums.title AS title', 'albums.artist AS artist', 'users.username AS username', 'users.email AS email')
     .then(reviews => reviews)
     .catch(error => error)
 }
 
 const byUserId = (userId) => {
-  return knex.select()
-    .from('reviews')
+  return knex('reviews')
     .where('user_id', userId)
-    .join('albums', 'reviews.album_id', '=', 'albums.id')
-    .join('users', 'reviews.user_id', '=', 'users.id')
+    .orderBy('reviews.id', 'desc')
+    .leftJoin('albums', 'reviews.album_id', '=', 'albums.id')
+    .leftJoin('users', 'reviews.user_id', '=', 'users.id')
+    .select('reviews.id AS id', 'album_id', 'user_id', 'content', 'reviews.created_on AS created_on', 'albums.title AS title', 'albums.artist AS artist', 'users.username AS username', 'users.email AS email')
     .then(reviews => reviews)
     .catch(error => error)
 }
