@@ -1,25 +1,32 @@
 <% include partials/header %>
 
-  <h1>Vinyl</h1>
-  <h2>Records</h2>
-
-  <div class="album-list">
-    <% albums.forEach(function(album) { %>
-      <div>
-        <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
-        <span><%= album.artist %></span>
+  <div class="row">
+    <div class="col m4 album-list">
+      <h4>Records</h4>
+      <% albums.forEach(function(album) { %>
+        <div>
+          <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
+          <span><%= album.artist %></span>
+        </div>
+        <% }) %>
       </div>
-    <% }) %>
-  </div>
 
-  <div class="review-list">
-    <h2> Recent Reviews</h2>
-    <% reviews.forEach(function(review) { %>
-      <h5><%= review.title %></h5>
-      <p><%= review.created_on %></p>
-      <p><%= review.content %></p>
-      <p>by: <%= review.username %> </p>
-    <% }) %>
+      <div class="col m7 review-list">
+        <h4> Recent Reviews</h4>
+        <% reviews.forEach(function(review) { %>
+          <div class="card horizontal">
+            <div class="card-content">
+              <div class="row">
+                <h5 class="col"><%= review.title %></h5>
+                <p class="col"><%= review.created_on %></p>
+              </div>
+              <p><%= review.content %></p>
+              <p>by: <%= review.username %> </p>
+              </div>
+            </div>
+          <% }) %>
+
+      </div>
   </div>
 
 <% include partials/footer %>

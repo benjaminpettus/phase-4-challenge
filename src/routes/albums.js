@@ -44,9 +44,7 @@ albums.post( '/:id/new-review', ( request, response ) => {
 })
 
 albums.delete('/:reviewId', (request, response ) => {
-  console.log('that route tho')
   const { reviewId }  = request.params
-  console.log('enroute::::::', reviewId)
   Reviews.deleteReview( reviewId )
     .then( review => review)
     .catch( error => console.error )
