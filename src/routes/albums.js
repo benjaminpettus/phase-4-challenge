@@ -29,9 +29,12 @@ albums.get( '/:id/new-review', ( request, response ) => {
 
 albums.post( '/:id/new-review', ( request, response ) => {
   const { id } = request.params
-  // const { user } = request.session.passport
-  console.log( request.body)
-  console.log( request.session)
+  if(request.session.passport) {
+    const { user } = request.session.passport
+  }
+
+  console.log( 'req body from post route',request.body)
+  console.log('session from post route', request.session)
   // Albums.addReview( user, id, content )
   //   .then( review => {
       return response.redirect(`/albums/${id}`)
