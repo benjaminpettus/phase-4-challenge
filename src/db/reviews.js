@@ -30,6 +30,24 @@ const byUserId = (userId) => {
     .catch(error => error)
 }
 
+const addReview = (userId, albumId , content) => {
+  return knex('reviews')
+    .returning('*')
+    .insert({
+      user_id: userId,
+      album_id: albumId,
+      content: content
+    })
+    .then(review => review )
+    .catch( error => error )
+}
+
+const deleteReview = ( id ) => {
+  return knex('reviews')
+  .where('id', id)
+  .del()
+}
+
 
 
 
@@ -37,5 +55,7 @@ const byUserId = (userId) => {
 module.exports = {
   lastThree,
   byAlbum,
-  byUserId
+  byUserId,
+  addReview,
+  deleteReview
 }

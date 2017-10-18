@@ -33,17 +33,15 @@ albums.get( '/:id/new-review', ( request, response ) => {
 
 
 albums.post( '/:id/new-review', ( request, response ) => {
-  const { id } = request.params
-  if(request.session.passport) {
+  if ( request.session.passport) {
     const { user } = request.session.passport
-  }
-
-  console.log( 'req body from post route',request.body)
-  console.log('session from post route', request.session)
-  // Albums.addReview( user, id, content )
-  //   .then( review => {
+    const { content } = request.body
+    const { id } = request.params
+    Reviews.addReview( user, id, content )
+    .then( review => {
       return response.redirect(`/albums/${id}`)
-  //   })
+    })
+  }
 })
 
 albums.delete('/:id/review', (request, response ) => {
