@@ -14,7 +14,6 @@ const getById = (id) => {
     .where('id', id)
     .then(album => album[0])
     .catch(error => error)
-
 }
 
 

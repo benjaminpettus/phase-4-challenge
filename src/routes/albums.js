@@ -1,16 +1,20 @@
 const albums = require('express').Router()
 const Album = require('../db/albums')
+const Reviews = require('../db/reviews')
 const passport = require('../auth/passport')
 
 albums.get( '/:id', ( request, response ) => {
   const { id } = request.params
-   Album.getById(id)
+    Album.getById(id)
     .then( album => {
+    Reviews.lastThree()
+    .then( reviews => {
       if(request.session.passport){
-        response.render('album', {album: album, session: request.session})
+        response.render('album', {album: album, reviews: reviews, session: request.session})
       } else {
-        response.render('album', {album: album})
+        response.render('album', {album: album, reviews:reviews})
       }
+    })
     })
 })
 
