@@ -15,6 +15,16 @@ const byEmail = (email) => {
     .then(user => user[0])
     .catch(error => error);
 }
+
+const byUsername = (username) => {
+  return knex.select()
+    .from('users')
+    .where('username', username)
+    .then(user => user[0])
+    .catch(error => error)
+}
+
+
 const create = ( email, username, password ) => {
   return knex.select().from('users').where({ username: username })
     .then( user => {
@@ -35,5 +45,7 @@ const create = ( email, username, password ) => {
 module.exports = {
   byId,
   byEmail,
+  byUsername,
   create
+
 }

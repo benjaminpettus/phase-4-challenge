@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const routes = require('./routes')
 const Albums = require('./db/albums')
 const passport = require('./auth/passport')
@@ -15,8 +16,9 @@ require('ejs')
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: false}))
+app.use( cookieParser() )
 
 app.use(session({
   key: 'user_sid',
@@ -28,7 +30,12 @@ app.use(session({
   }
 }))
 
-
+app.use(( request, response, next ) => {
+  if(!( request.cookies && request.cookies.user_sid )) {
+    response.clearCookie( 'user_sid' )
+  }
+  next()
+})
 // app.get('/albums/:albumID', (req, res) => {
 //   const albumID = req.params.albumID
 //

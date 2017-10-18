@@ -46,8 +46,8 @@ preAuth.post('/signin', passport.authenticate('local', {
 )
 
 preAuth.get('/logout', (request, response) => {
-  request.logout()
-  response.redirect('signin')
+  response.clearCookie('user_sid')
+    .redirect('signin')
 })
 
 

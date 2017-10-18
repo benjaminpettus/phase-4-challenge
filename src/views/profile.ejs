@@ -3,5 +3,15 @@
 <h1><%= user.username %></h1>
 <% console.log('from view', user)%>
 
-
+<div class="content">
+  <p class="title is-4">
+    Hello
+    <%- user.username %></p>
+  <p>email:
+    <%- user.email %>
+  </p>
+  <small>
+    Member Since :<br> <%- user.created_on %>
+  </small>
+</div>
 <% include partials/footer %>
