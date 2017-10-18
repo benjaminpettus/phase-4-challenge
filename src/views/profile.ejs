@@ -1,40 +1,58 @@
 <% include partials/header %>
 
-<h1><%= user.username %></h1>
-<% console.log('from view', user)%>
+<div class="row">
+  <div class="col m3">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+      </div>
+      <div class="card-content white-text">
+      </div>
+      <div class="card-content white-text">
+      </div>
+      <div class="card-content white-text">
+      </div>
+      <div class="card-content white-text">
+      </div>
+    </div>
+  </div>
+  <div class="col m8">
+    <div class="content container">
+      <h5 class="title is-4">
+        Hello
+        <%- user.username %></h5>
+        <p>email:
+          <%- user.email %>
+        </p>
+        <small>
+          Member Since :<br> <%- user.created_on %>
+        </small>
+    </div>
 
-<div class="content">
-  <p class="title is-4">
-    Hello
-    <%- user.username %></p>
-  <p>email:
-    <%- user.email %>
-  </p>
-  <small>
-    Member Since :<br> <%- user.created_on %>
-  </small>
+    <div class="container">
+        <h4>Reviews</h4>
+        <div class="review-container">
+          <% reviews.forEach(function(review) { %>
+            <div class="col">
+              <div class="card horizontal">
+                <div class="card-content">
+                  <div class="row">
+                    <h5 class="col"><%= review.title %></h5>
+                    <p class="col"><%= review.created_on %></p>
+                  </div>
+                  <p><%= review.content %></p>
+                  <p>by: <%= review.username %> </p>
+                  <% if (locals.session && locals.session.passport.user == review.user_id) { %>
+                    <a href="#" class="delete btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" data-id="<%= review.id %>">delete_forever</i></a>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+
+      </div>
+
+  </div>
 </div>
 
-<h2>Reviews</h2>
-<% reviews.forEach(function(review) { %>
-  <% console.log('from view::::;',review)%>
-  <div class="col s12 m7">
-     <div class="card horizontal">
-       <div class="card-stacked">
-         <div class="card-content">
-           <h5><%= review.title %></h5>
-           <p><%= review.created_on %></p>
-           <p><%= review.content %></p>
-           <p>by: <%= review.username %> </p>
-           <% if (locals.session && locals.session.passport.user == review.id) { %>
-             <a href="#" class="delete btn-floating halfway-fab waves-effect waves-light red" data-id="<%= review.id %>"><i class="material-icons" >delete_forever</i></a>
-           <% } %>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-         </div>
-       </div>
-     </div>
-   </div>
-  <% }) %>
 <% include partials/footer %>

@@ -1,5 +1,6 @@
 const users = require('express').Router()
 const User = require('../db/users')
+const Reviews = require('../db/reviews')
 
 
 users.get( '/', ( request, response ) => {
@@ -14,7 +15,14 @@ users.get('/:username', ( request, response ) => {
   const {username} = request.params
   User.byUsername(username)
   .then( user => {
-    response.render( 'profile', { user: user, session: request.session })
+  Reviews.byUserId(user.id)
+  .then( reviews => {
+    if (request.session.passport) {
+      response.render( 'profile', { user: user, reviews: reviews, session: request.session })
+    } else {
+      response.render( 'profile', { user: user, reviews:reviews })
+    }
+  })
   })
 })
 

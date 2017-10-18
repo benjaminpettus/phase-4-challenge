@@ -5,21 +5,9 @@ const ELEMENTS = {
  signupUsername: () => document.getElementById('signup-username'),
  signupPwd: () => document.getElementById('signup-password'),
  signupBtn: () => document.getElementById('signupBtn'),
- deleteBtn: () => document.querySelectorAll('.delete')
-}
-
-console.log(ELEMENTS.deleteBtn())
-
-CONTROLLER = {
-  deleteTodo: (event) => {
-    const id = event.target.dataset.id
-    const target = event.target
-    DATA.deleteTodo(id)
-    .then(response => {
-      UI.deleteTodo(target)
-    })
-    .catch(error = console.error)
-  }
+ deleteBtn: () => document.querySelectorAll('.delete'),
+ newReviewContent: () => document.getElementById('new-review'),
+ addReviewBtn: () => document.querySelector('.newnew')
 
 }
 
@@ -29,13 +17,30 @@ DATA = {
    .then(response => {
      return response.text()
    })
+   .then(() => {
+     const card = target.parentNode.parentNode.parentNode.parentNode
+     console.log(card)
+     card.parentNode.removeChild(card)
+   })
   }
 
 }
 
-const UI = {
+UI = {
 
   addAllEventListeners: () => {
+
+    if(ELEMENTS.newReviewBtn()){
+      ELEMENTS.newReviewBtn().addEventListener('click', (event) => {
+        console.log('click')
+      if( ELEMENTS.newReviewContent().value == ''){
+        alert('You must enter a review!!')
+        event.preventDefault()
+      }
+      }
+    })
+
+    }
 
     if (ELEMENTS.signupBtn()){
       ELEMENTS.signupBtn().addEventListener('click', (event) => {
@@ -50,20 +55,17 @@ const UI = {
 
     ELEMENTS.deleteBtn().forEach(tile => {
       tile.addEventListener('click', (event) => {
-        console.log('clickies')
       confirm("Are you sure you want to delete this review?")
-      //  ? CONTROLLER.removeReview(event)
-      //  : event.preventDefault()
+       ? DATA.removeReview(parseInt(event.target.dataset.id), event.target)
+       : event.preventDefault()
       })
     })
 
-  },
-  deleteTodo: (element) => {
-      const card = element.parentNode.parentNode
-      card.parentNode.removeChild(card)
-    }
-  
+  }
+
+
 
 }
+
 
 UI.addAllEventListeners()
