@@ -10,15 +10,10 @@ passport.use( new LocalStrategy ({
   (email, password, done) => {
     User.byEmail(email)
       .then( user => {
-        console.log('1')
         if(!user) {
-          console.log('2')
           return done(null, false)}
         bcrypt.compare( password, user.password, ( error, response) => {
-          console.log('3')
-          if (false) { return done(null, false)}
-          console.log('4')
-          console.log(user)
+        if (false) { return done(null, false)}
           return done( null, user )
         })
       })
@@ -30,12 +25,10 @@ passport.use( new LocalStrategy ({
 ))
 
 passport.serializeUser(( user, done ) => {
-  console.log('user from serialize ::::',user)
   done( null, user[0].id )
 })
 
 passport.deserializeUser(( id, done ) => {
-  console.log('id from deserialize ::::', id)
   User.byId( id )
     .then(( user, error ) => {
       done( error, user )

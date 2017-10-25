@@ -11,36 +11,49 @@ const ELEMENTS = {
 
 }
 
+CONTROLLER = {
+  deleteReview: (event) => {
+    const target = event.target
+    const id = event.target.dataset.id
+    console.log(id)
+    DATA.deleteReview(id)
+    .then(response => {
+      console.log(' from controller :::',response)
+      UI.removeCard(target)
+    })
+    .catch(error => console.error )
+  }
+}
+
 DATA = {
-  removeReview: ( reviewId, target ) => {
-   return fetch(`http://localhost:3000/albums/${reviewId}` , { method:"DELETE" })
+  deleteReview: ( id ) => {
+   return fetch(`http://localhost:3000/albums/${id}` , { method: 'DELETE', mode: 'no-cors' })
    .then(response => {
      return response.text()
-   })
-   .then(() => {
-     const card = target.parentNode.parentNode.parentNode.parentNode
-     console.log(card)
-     card.parentNode.removeChild(card)
    })
   }
 
 }
 
 UI = {
+  removeCard: (target) => {
+    const card = target.parentNode.parentNode.parentNode
+    console.log('card:::', card)
+    const parent = card.parentNode
+    console.log('parent node::::',parent)
+    parent.removeChild(card)
+  },
 
   addAllEventListeners: () => {
 
-    if(ELEMENTS.newReviewBtn()){
-      ELEMENTS.newReviewBtn().addEventListener('click', (event) => {
-        console.log('click')
-      if( ELEMENTS.newReviewContent().value == ''){
-        alert('You must enter a review!!')
-        event.preventDefault()
+      if (ELEMENTS.addReviewBtn()){
+        ELEMENTS.addReviewBtn().addEventListener('click', (event) => {
+          if (ELEMENTS.newReviewContent().value == '') {
+            alert('you must enter a review')
+            event.preventDefault()
+          }
+        })
       }
-      }
-    })
-
-    }
 
     if (ELEMENTS.signupBtn()){
       ELEMENTS.signupBtn().addEventListener('click', (event) => {
@@ -55,8 +68,9 @@ UI = {
 
     ELEMENTS.deleteBtn().forEach(tile => {
       tile.addEventListener('click', (event) => {
+      console.log('click', event.target.parentNode.parentNode.parentNode)
       confirm("Are you sure you want to delete this review?")
-       ? DATA.removeReview(parseInt(event.target.dataset.id), event.target)
+       ? CONTROLLER.deleteReview(event)
        : event.preventDefault()
       })
     })

@@ -32,7 +32,7 @@
         <h4>Reviews</h4>
         <div class="review-container">
           <% reviews.forEach(function(review) { %>
-            <div class="col">
+            
               <div class="card horizontal">
                 <div class="card-content">
                   <div class="row">
@@ -42,11 +42,11 @@
                   <p><%= review.content %></p>
                   <p>by: <%= review.username %> </p>
                   <% if (locals.session && locals.session.passport.user == review.user_id) { %>
-                    <a href="#" class="delete btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" data-id="<%= review.id %>">delete_forever</i></a>
+                    <a class="delete btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" data-id="<%= review.id %>">delete_forever</i></a>
                     <% } %>
                 </div>
               </div>
-            </div>
+            
           <% }) %>
         </div>
 

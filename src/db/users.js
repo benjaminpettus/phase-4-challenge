@@ -26,7 +26,7 @@ const byUsername = (username) => {
 
 
 const create = ( email, username, password ) => {
-  return knex.select().from('users').where({ username: username })
+  return knex.select().from('users').where({ email: email })
     .then( user => {
       if(!user.length) {
       return knex( 'users' )
